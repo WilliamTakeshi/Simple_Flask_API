@@ -1,64 +1,34 @@
-from flask import Flask, jsonify, request
+from flask import Flask
+from flask_restful import Api
+from flask_jwt import JWT
+
+from security import authenticate, identity
+from resources.user import UserRegister
+from resources.appointment import Appointment, AppointmentList
+from resources.client import ClientRegister, Client
+#from resources.store import Store, StoreList
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'clinicsecret'
+api = Api(app)
 
-appointments = [
-    {
-        'id': 1,
-        'client_id': 1,
-        'register_date': '2017-12-01 00:00:00',
-        'begin_date': '2017-12-01 07:00:00',
-        'end_date': '2017-12-01 12:00:00',
-        'procedures': [
-            {
-                'name': 'consulta simples',
-                'price': '59.99'
-            }
-        ]
-    }
-]
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
-@app.route('/')
-def home():
-    return 'Hello, world'
+jwt = JWT(app, authenticate, identity)  # /auth
 
-@app.route('/appointments', methods=['GET'])
-def get_appointments():
-    return jsonify({'appointments': appointments})
+api.add_resource(AppointmentList, '/appointment')
+api.add_resource(Appointment, '/appointment/<id>')
+api.add_resource(ClientRegister, '/clientregister')
+api.add_resource(Client, '/client/<cpf>')
+#api.add_resource(Item, '/item/<string:name>')
+#api.add_resource(ItemList, '/items')
+#api.add_resource(UserRegister, '/register')
 
-@app.route('/appointment/<appointment_id>', methods=['GET'])
-def get_appointment(appointment_id):
-    for appointment in appointments:
-        if appointment['id'] == int(appointment_id):
-            return jsonify(appointment)
-    return jsonify({'message': 'agendamento não encontrado'})
-
-@app.route('/appointment/<appointment_id>/procedures', methods=['GET'])
-def get_appointment_procedure(appointment_id):
-    for appointment in appointments:
-        if appointment['id'] == int(appointment_id):
-            return jsonify(appointment['procedures'])
-    return jsonify({'message': 'agendamento não encontrado'})
-
-@app.route('/appointment', methods=['POST'])
-def create_appointment():
-    request_data = request.get_json()
-    new_appointment = {
-        'clienttid': request_data['clienttid'],
-        'begin_date': request_data['begin_date'],
-        'end_date': request_data['end_date'],
-        'procedures': []
-    }
-    appointments.append(new_appointment)
-    return jsonify(new_appointment)
-
-@app.route('/appointment/<id>', methods=['PUT'])
-def update_appointment():
-    pass
-
-@app.route('/appointment', methods=['DELETE'])
-def delete_appointment():
-    pass
-
-app.run(port=5000, debug=True)
-
+if __name__ == '__main__':
+    from db import db
+    db.init_app(app)
+    app.run(port=5000, debug=True)

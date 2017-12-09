@@ -2,4 +2,7 @@
 A simple flask REST API using Flask and SQLite
 
 
-Test push 1
+Flask
+Flask-RESTful
+Flask-JWT
+Flask-SQLAlchemy
