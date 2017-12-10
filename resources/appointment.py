@@ -33,9 +33,15 @@ class Appointment(Resource):
         return {'message': 'Appointment deleted'}
 
     def put(self, _id):
-        data = Item.parser.parse_args()
+        data = Appointment.parser.parse_args()
+        appointment = AppointmentModel.find_by_id(_id)
 
-        appointment = AppointmentModel(_id, **data)
+        if appointment:
+            appointment.date_begin = data['date_begin']
+            appointment.date_end = data['date_end']
+            appointment.client_id = data['client_id']
+        else:
+            appointment = AppointmentModel(**data)
 
         appointment.save_to_db()
 

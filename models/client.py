@@ -26,4 +26,4 @@ class ClientModel(db.Model):
         return cls.query.filter_by(id=_id).first()
 
     def json(self):
-        return {'cpf': self.cpf, 'name': self.name, 'birthday': self.birthday}
+        return {'id': self.id, 'cpf': self.cpf, 'name': self.name, 'birthday': self.birthday}

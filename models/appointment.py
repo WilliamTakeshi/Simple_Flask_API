@@ -16,7 +16,7 @@ class AppointmentModel(db.Model):
         self.client_id = client_id
 
     def json(self):
-        return {'date_begin': self.date_begin, 'date_end': self.date_end, 'client_id': self.client_id}
+        return {'id': self.id, 'date_begin': self.date_begin, 'date_end': self.date_end, 'client_id': self.client_id}
 
     @classmethod
     def find_by_id(cls, _id):

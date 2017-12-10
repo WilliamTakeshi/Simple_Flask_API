@@ -16,6 +16,10 @@ class ClientRegister(Resource):
     parser.add_argument('birthday',
         type=str
     )
+
+    def get(self):
+        return {'client': [client.json() for client in ClientModel.query.all()]}
+
     def post(self):
         data = ClientRegister.parser.parse_args()
 
