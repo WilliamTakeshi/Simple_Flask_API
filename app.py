@@ -7,7 +7,8 @@ from resources.user import UserRegister
 from resources.appointment import Appointment, AppointmentList
 from resources.client import ClientRegister, Client
 from resources.procedurename import ProcedureName, ProcedureNameList
-#from resources.store import Store, StoreList
+from resources.procedures import Procedure, ProcedureList
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -28,6 +29,8 @@ api.add_resource(Client, '/client/<cpf>')
 api.add_resource(UserRegister, '/register')
 api.add_resource(ProcedureNameList, '/procedurename')
 api.add_resource(ProcedureName, '/procedurename/<_id>')
+api.add_resource(ProcedureList, '/procedure')
+api.add_resource(Procedure, '/procedure/<_id>')
 
 if __name__ == '__main__':
     from db import db
