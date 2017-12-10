@@ -37,7 +37,7 @@ Field | Description
 The Appointment API have this properties
 
 HTTP Method | Action | Examples
-------|------------
+------|------------ | -------
 GET | Obtain information about all appointments | /v0/appointment
 POST | Post information about a appointments | /v0/appointment
 GET | Obtain information about an appointment | /v0/appointment/<id>
@@ -99,7 +99,7 @@ birthday | Birthday. str
 The client API have this properties
 
 HTTP Method | Action | Examples
-------|------------
+------|------------ | -------
 GET | Obtain information about all clients | /v0/client
 POST | Create a new client | /v0/client
 GET | Obtain information about a client | /v0/client/<cpf>
@@ -135,7 +135,7 @@ discount_percent | Discount given in this procedure (%). float(precision=2)
 The Procedure API have this properties
 
 HTTP Method | Action | Examples
-------|------------
+------|------------ | -------
 GET | Obtain information about all procedure | /v0/procedure
 POST | Post information about a procedure | /v0/procedure
 GET | Obtain information about a procedure | /v0/procedure/<id>
@@ -168,7 +168,7 @@ Field | Description
 The procedure API have this properties
 
 HTTP Method | Action | Examples
-------|------------
+------|------------ | -------
 GET | Obtain information about all procedures | /v0/procedurename
 POST | Create a new procedures | /v0/procedurename
 GET | Obtain information about a procedures | /v0/procedurename/<cpf>
@@ -212,7 +212,7 @@ Field | Description
 The User API have this properties
 
 HTTP Method | Action | Examples
-------|------------
+------|------------ | -------
 POST | Receive the JWT token | /v0/auth
 POST | Register a new user | /v0/register
 
