@@ -7,7 +7,7 @@ from resources.user import UserRegister
 from resources.appointment import Appointment, AppointmentList
 from resources.client import ClientRegister, Client
 from resources.procedurename import ProcedureName, ProcedureNameList
-from resources.procedures import Procedure, ProcedureList
+from resources.procedure import Procedure, ProcedureList
 
 
 app = Flask(__name__)
