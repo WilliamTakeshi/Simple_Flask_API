@@ -6,6 +6,7 @@ from security import authenticate, identity
 from resources.user import UserRegister
 from resources.appointment import Appointment, AppointmentList
 from resources.client import ClientRegister, Client
+from resources.procedurename import ProcedureName, ProcedureNameList
 #from resources.store import Store, StoreList
 
 app = Flask(__name__)
@@ -25,6 +26,8 @@ api.add_resource(Appointment, '/appointment/<_id>')
 api.add_resource(ClientRegister, '/client')
 api.add_resource(Client, '/client/<cpf>')
 api.add_resource(UserRegister, '/register')
+api.add_resource(ProcedureNameList, '/procedurename')
+api.add_resource(ProcedureName, '/procedurename/<_id>')
 
 if __name__ == '__main__':
     from db import db

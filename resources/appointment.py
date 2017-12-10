@@ -52,22 +52,6 @@ class Appointment(Resource):
         return appointment.json()
 
 class AppointmentList(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('date_begin',
-        type=str,
-        required=True,
-        help="This field cannot be left blank!"
-    )
-    parser.add_argument('date_end',
-        type=str,
-        required=True,
-        help="This field cannot be left blank!"
-    )
-    parser.add_argument('client_id',
-        type=int,
-        required=True,
-        help="This field cannot be left blank!"
-    )
 
     def get(self):
         return {'appointment': list(map(lambda x: x.json(), AppointmentModel.query.all()))}
