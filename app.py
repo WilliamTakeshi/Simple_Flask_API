@@ -24,9 +24,7 @@ api.add_resource(AppointmentList, '/appointment')
 api.add_resource(Appointment, '/appointment/<_id>')
 api.add_resource(ClientRegister, '/client')
 api.add_resource(Client, '/client/<cpf>')
-#api.add_resource(Item, '/item/<string:name>')
-#api.add_resource(ItemList, '/items')
-#api.add_resource(UserRegister, '/register')
+api.add_resource(UserRegister, '/register')
 
 if __name__ == '__main__':
     from db import db

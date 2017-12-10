@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.appointment import AppointmentModel
+from flask_jwt import jwt_required
 
 class Appointment(Resource):
     parser = reqparse.RequestParser()
@@ -25,13 +26,16 @@ class Appointment(Resource):
             return appointment.json()
         return {'message': 'Appointment not found'}, 404
 
+    @jwt_required()
     def delete(self, _id):
         appointment = AppointmentModel.find_by_id(_id)
         if appointment:
             appointment.delete_from_db()
+            return {'message': 'Appointment deleted'}
 
-        return {'message': 'Appointment deleted'}
+        return {'message': "There is no appointment with id '{}'".format(_id)}, 400
 
+        
     def put(self, _id):
         data = Appointment.parser.parse_args()
         appointment = AppointmentModel.find_by_id(_id)
