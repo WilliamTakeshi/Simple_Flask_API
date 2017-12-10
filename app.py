@@ -22,15 +22,15 @@ def create_tables():
 
 jwt = JWT(app, authenticate, identity)  # /auth
 
-api.add_resource(AppointmentList, '/appointment')
-api.add_resource(Appointment, '/appointment/<_id>')
-api.add_resource(ClientRegister, '/client')
-api.add_resource(Client, '/client/<cpf>')
-api.add_resource(UserRegister, '/register')
-api.add_resource(ProcedureNameList, '/procedurename')
-api.add_resource(ProcedureName, '/procedurename/<_id>')
-api.add_resource(ProcedureList, '/procedure')
-api.add_resource(Procedure, '/procedure/<_id>')
+api.add_resource(AppointmentList, '/v0/appointment')
+api.add_resource(Appointment, '/v0/appointment/<_id>')
+api.add_resource(ClientRegister, '/v0/client')
+api.add_resource(Client, '/v0/client/<cpf>')
+api.add_resource(UserRegister, '/v0/register')
+api.add_resource(ProcedureNameList, '/v0/procedurename')
+api.add_resource(ProcedureName, '/v0/procedurename/<_id>')
+api.add_resource(ProcedureList, '/v0/procedure')
+api.add_resource(Procedure, '/v0/procedure/<_id>')
 
 if __name__ == '__main__':
     from db import db
