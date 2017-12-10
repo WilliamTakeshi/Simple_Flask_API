@@ -6,6 +6,7 @@ A simple flask REST API using Flask-RESTFul and SQLite
 
 ## Requeriments
 
+* Python 3
 * Flask
 * Flask-RESTful
 * Flask-JWT
